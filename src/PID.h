@@ -1,5 +1,7 @@
 #ifndef PID_H
 #define PID_H
+#include<vector>
+using namespace std;
 
 class PID {
  public:
@@ -31,6 +33,8 @@ class PID {
    */
   double TotalError();
 
+  vector<double> get_params();
+
  private:
   /**
    * PID Errors
@@ -38,6 +42,10 @@ class PID {
   double p_error;
   double i_error;
   double d_error;
+  // double total_error;
+  // double best_error;
+  bool twiddle = false;
+  // int N = 100;      // total time steps, each in 1s
 
   /**
    * PID Coefficients

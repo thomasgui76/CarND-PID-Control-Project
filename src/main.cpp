@@ -8,6 +8,7 @@
 // for convenience
 using nlohmann::json;
 using std::string;
+using namespace std;
 
 // For converting back and forth between radians and degrees.
 constexpr double pi() { return M_PI; }
@@ -34,6 +35,7 @@ int main() {
   uWS::Hub h;
 
   PID pid;
+  pid.Init(0.2,0.001,4);
   /**
    * TODO: Initialize the pid variable.
    */
@@ -63,7 +65,9 @@ int main() {
            * NOTE: Feel free to play around with the throttle and speed.
            *   Maybe use another PID controller to control the speed!
            */
+          pid.UpdateError(cte);
           
+          steer_value = pid.TotalError();
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value 
                     << std::endl;

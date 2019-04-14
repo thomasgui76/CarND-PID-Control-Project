@@ -96,3 +96,11 @@ still be compilable with cmake and make./
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
+## Implements
+1. PID control is very simple. just realize the function:
+   steer_value = -tau_p * CTE - tau_d * diff_CTE - tau_i * int_CTE
+   then fine-tune the 3 Kp, Ki, Kd parameters.
+   Kp control current shift. we change the state to what we expect right now. the Kp depend on how sharply the change. if the track in smooth segment, Kp should be smaller a little.
+   Kd control shift trend, which means intervene in advance. the change will take effect later. so the Kd parameters normally is the biggest.
+   Ki control historical shift, which means we take action to correct the state based on historical experience.
+2. If want to turn smoother, need to change the 3 parameter during the vehicle drive along the track.
